@@ -87,6 +87,55 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-
+// 1. For total number of months in the dataset
 const totalMonths = finances.length;
 console.log("Total number of months included in the dataset:", totalMonths);
+
+
+// 2. For net total of Profits/Losses
+var netTotal = 0;
+
+// Loop through the finances array and sum up all the profit/losses
+for (var i = 0; i < finances.length; i++) {
+  netTotal += finances[i][1];
+}
+console.log("The net total amount of Profit/Losses over the entire period is: $" + netTotal);
+
+//3.
+
+// Initialize variables
+var totalChange = 0;
+var previousValue = finances[0][1]; // Initial value for the first month
+var numberOfChanges = 0;
+var BestChange = 0;
+var WorstChange = 0;
+
+
+// Loop through the finances array to calculate the changes and total change
+for (var i = 1; i < finances.length; i++) {
+  var currentValue = finances[i][1];
+  var change = currentValue - previousValue;
+  totalChange += change;
+  previousValue = currentValue;
+  numberOfChanges++;
+  if (change > BestChange) {
+BestChange = change;
+}
+if (change < WorstChange) {
+  WorstChange = change
+}
+}
+
+
+ console.log("Best Change is: $" + BestChange)
+console.log("Worst Change is: $" + WorstChange)
+
+// Calculate the average change
+var averageChange = totalChange / numberOfChanges;
+
+// Output the average change
+console.log("The average of the changes in Profit/Losses over the entire period is: $" + averageChange.toFixed(2));
+
+
+
+
